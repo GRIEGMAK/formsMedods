@@ -15,22 +15,24 @@
             </select>
         </label>
         <label for="documents_series">Серия:
-            <input type="text" id="documents_series" />
+            <input type="text" id="documents_series" v-model="form.documents_series" />
         </label>
         <label for="documents_number">Номер:
-            <input type="text" id="documents_number" />
+            <input type="text" id="documents_number" v-model="form.documents_number" />
         </label>
         <label for="document_issued">Кем выдан:
-            <input type="text" id="document_issued" />
+            <input type="text" id="document_issued" v-model="form.document_issued" />
         </label>
         <label for="document_date">Дата выдачи*:
-            <input type="date" id="document_date" required/>
+            <input type="date" id="document_date" v-model="form.document_date" required/>
         </label>
     </div>
 </div>
 </template>
 
 <script>
+import onlyNumbers from '../valid/onlyNumbers';
+import { required, minLength } from 'vuelidate/lib/validators';
 import '@/styles/passport.sass'
 
 export default {
@@ -47,7 +49,14 @@ export default {
   },
   data() {
       return{
-          registerPassportClient: false,
+          registerClient: false,
+          form: {
+              type_document: '',
+              documents_series: '',
+              documents_number: '',
+              document_issued: '',
+              document_date: '',
+          },
           types_document: [
               {
                   value: "Паспорт"
@@ -60,6 +69,14 @@ export default {
               }
           ]
       }
-  }
+  },
+  validations: {
+    form: {
+        documents_series: { onlyNumbers, minLength: minLength(4)},
+        documents_number: { onlyNumbers, minLength: minLength(6)},
+        type_document: { required },
+        document_date: { required },
+    },
+  },
 }
 </script>

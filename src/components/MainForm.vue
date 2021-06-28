@@ -4,19 +4,19 @@
         АНКЕТА
     </div>
     <label for="surname">Фамилия*:
-        <input type="text" id="surname" v-model.trim="form.surname" tabindex="1" required/>
+        <input type="text" id="surname" v-model.trim="form.surname" tabindex="1" />
     </label>
     <label for="name">Имя*:
-        <input type="text" id="name" tabindex="2" v-model.trim="form.name" required/>
+        <input type="text" id="name" tabindex="2" v-model.trim="form.name" />
     </label>
     <label for="last_name">Отчество:
         <input type="text" id="last_name" v-model.trim="form.last_name" tabindex="3" />
     </label>
     <label for="birthday">Дата рождения*:
-        <input type="date" id="birthday" v-model.trim="form.birthday" tabindex="4" required/>
+        <input type="date" id="birthday" v-model.trim="form.birthday" tabindex="4" />
     </label>
     <label for="number_phone">Номер телефона*:
-        <input type="tel" id="number_phone" placeholder="7" v-model.trim="form.number_phone" tabindex="5" required/>
+        <input type="tel" id="number_phone" placeholder="11 цифр, с 7" v-model.trim="form.number_phone" tabindex="5" />
     </label>
     <label for="sex">Пол:
         <input type="text" id="sex" v-model.trim="form.sex" tabindex="6"/>
@@ -36,7 +36,7 @@
         </select>
     </label>
     <div id="div_sms">Не отправлять СМС:
-        <input type="checkbox" id="sms"/>
+        <input type="checkbox" id="sms" v-model="form.sms" />
     </div>
     <adress></adress>
     <passport></passport>
@@ -51,6 +51,9 @@ import Passport from './Passport.vue'
 import Adress from './Adress.vue'
 import SendPanel from './SendPanel.vue'
 import Note from './Note.vue'
+import { required } from 'vuelidate/lib/validators';
+import onlyNumbers from '../valid/onlyNumbers';
+import validPhone from '../valid/validPhone';
 
 export default {
   name: 'MainForm',
@@ -62,7 +65,6 @@ export default {
   },
   data() {
       return {
-        registerMainClient: false,
         registerClient: false,
         form: {
             surname: '',
@@ -70,7 +72,10 @@ export default {
             last_name: '',
             birthday: '',
             number_phone: '',
-            sex: ''
+            sex: '',
+            group_client: '',
+            doctor: '',
+            sms: false,
         },
         doctors: [
             {
@@ -95,6 +100,15 @@ export default {
             }
         ]
       }
-  }
+  },
+  validations: {
+    form: {
+        surname: { required },
+        name: { required },
+        birthday: { required, onlyNumbers },
+        number_phone: { required, onlyNumbers, validPhone },
+        group_client: { required },
+    },
+  },
 }
 </script>

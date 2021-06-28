@@ -8,28 +8,30 @@
     </div>
     <div id="body_adress">
         <label for="index_city">Индекс:
-            <input type="text" pattern="[0-9]{5}" id="index_city" />
+            <input type="text" id="index_city" v-model.trim="form.index_city"/>
         </label>
         <label for="country">Страна:
-            <input type="text" id="country" />
+            <input type="text" id="country" v-model.trim="form.country"/>
         </label>
         <label for="region">Область:
-            <input type="text" id="region" />
+            <input type="text" id="region" v-model.trim="form.region"/>
         </label>
         <label for="city">Город:
-            <input type="text" id="city" />
+            <input type="text" id="city" v-model.trim="form.city"/>
         </label>
         <label for="street">Улица:
-            <input type="text" id="street" />
+            <input type="text" id="street" v-model.trim="form.street"/>
         </label>
         <label for="home">Дом:
-            <input type="text" id="home" />
+            <input type="text" id="home" v-model.trim="form.home"/>
         </label>
     </div>
 </div>
 </template>
 
 <script>
+import onlyNumbers from '../valid/onlyNumbers';
+import { maxLength } from 'vuelidate/lib/validators';
 import '@/styles/adress.sass'
 
 export default {
@@ -46,10 +48,21 @@ export default {
   },
   data() {
       return{
+          registerClient: false,
           form: {
-              
-          }
+              index_city:'',
+              country: '',
+              region: '',
+              city: '',
+              street: '',
+              home: '',
+          },
       }
-  }
+  },
+  validations: {
+    form: {
+        index_city: { onlyNumbers, maxLength: maxLength(6) },
+    },
+  },
 }
 </script>
