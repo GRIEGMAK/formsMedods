@@ -1,0 +1,48 @@
+#header_passport
+    display: flex
+    justify-content: space-between
+
+#passport
+    box-shadow: 0 -10px 20px  rgba(0,0,0,0.3)
+    border-radius: 22px
+    padding: 1rem 2rem 25px 2rem
+    margin: 0 -2rem 0 -2rem
+
+
+#passport_arrow
+    position: relative
+    margin-right: 1rem
+    height: 40px
+    width: 40px
+    border-radius: 50%
+    background-color: #22b2ea
+    transition-duration: 500ms
+    &:after
+        position: absolute
+        content: ''
+        width: 40px
+        height: 40px
+        background-size: 25px 25px
+        transform: rotate(180deg)
+        background-image: url('data:image/svg+xml;base64, PHN2ZyB2ZXJzaW9uPSIxLjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEzMDkuMzMzIiBoZWlnaHQ9Ijc2Mi42NjciIHZpZXdCb3g9IjAgMCA5ODIgNTcyIj48cGF0aCBkPSJNMzIgMS42QzIwLjEgNC44IDEwLjMgMTMuMiA0LjYgMjVjLTIuOCA1LjktMy4xIDcuNC0zLjEgMTYgMCAxNC4xIDIuMiAxOC4yIDIxLjYgMzkuNSA4LjUgOS40IDEwOS4yIDEyMC4zIDIyMy44IDI0Ni41IDExNC41IDEyNi4yIDIxMC4yIDIzMS4zIDIxMi40IDIzMy40IDkuMyA4LjcgMjUuMSAxMyAzOS41IDEwLjggOS4zLTEuNSAxOC4yLTUuNSAyMy45LTEwLjggMi4yLTIuMSAxMDIuMy0xMTIuMSAyMjIuNC0yNDQuNCAxMjAtMTMyLjMgMjIxLjMtMjQzLjcgMjI1LTI0Ny43IDUuNy02IDcuMS04LjMgOC44LTEzLjggNy42LTI0LjQtNy41LTQ5LTMyLjktNTMuNy0xMC44LTIuMS0yNCAyLTMyLjQgMTAtMi4xIDItOTcuOSAxMDYuOS0yMTIuOCAyMzIuOUM1ODUuOCAzNjkuOCA0OTEuNCA0NzMgNDkxIDQ3M2MtLjQgMC05NC44LTEwMy4yLTIwOS44LTIyOS4zQzE2Ni4zIDExNy43IDcwLjUgMTIuOCA2OC40IDEwLjggNjEuNiA0LjQgNTAuNiAwIDQxLjUuMSAzOS4zLjEgMzUgLjggMzIgMS42eiIvPjwvc3ZnPg==')
+        background-repeat: no-repeat
+        background-position: center center
+
+#passport.passive #passport_arrow
+    transition-duration: 500ms
+    transform: rotate(180deg)
+
+#passport.passive #body_passport
+    display: none
+
+
+@media screen and ( max-width: 900px )
+    #passport input
+        font-size: 10px
+        width: 55%    
+
+    
+@media screen and ( max-width: 550px )
+    #passport input
+        font-size: 10px
+        width: 50%    
