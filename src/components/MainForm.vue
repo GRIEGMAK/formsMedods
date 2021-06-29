@@ -46,11 +46,12 @@
 </template>
 
 <script>
-import "@/styles/mainform.sass"
-import Passport from './Passport.vue'
-import Adress from './Adress.vue'
-import SendPanel from './SendPanel.vue'
-import Note from './Note.vue'
+import { validationMixin } from 'vuelidate';
+import "@/styles/mainform.sass";
+import Passport from './Passport.vue';
+import Adress from './Adress.vue';
+import SendPanel from './SendPanel.vue';
+import Note from './Note.vue';
 import { required } from 'vuelidate/lib/validators';
 import onlyNumbers from '../valid/onlyNumbers';
 import validPhone from '../valid/validPhone';
@@ -63,6 +64,7 @@ export default {
     SendPanel,
     Note
   },
+  mixins: [validationMixin],
   data() {
       return {
         registerClient: false,
