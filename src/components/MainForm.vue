@@ -1,10 +1,15 @@
 <template>
+<!-- <form v-if="!registerClient" @submit.prevent="checkForm"> -->
   <div id="main_form">
     <div id="name_form">
         АНКЕТА
     </div>
     <label for="surname">Фамилия*:
-        <input type="text" id="surname" v-model.trim="form.surname" tabindex="1" />
+        <input type="text" 
+            id="surname" 
+            v-model.trim="form.surname" 
+            tabindex="1" 
+            class=""/>
     </label>
     <label for="name">Имя*:
         <input type="text" id="name" tabindex="2" v-model.trim="form.name" />
@@ -43,6 +48,7 @@
     <note></note>
     <send-panel></send-panel>
   </div>
+  <!-- </form> -->
 </template>
 
 <script>
@@ -110,6 +116,14 @@ export default {
         birthday: { required, onlyNumbers },
         number_phone: { required, onlyNumbers, validPhone },
         group_client: { required },
+    },
+  },
+  methods: {
+    checkForm() {
+      this.$v.form.$touch();
+      if (!this.$v.form.$error) {
+        this.registerClient = true;
+      }
     },
   },
 }
