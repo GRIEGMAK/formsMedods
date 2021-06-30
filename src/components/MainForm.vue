@@ -5,11 +5,7 @@
         АНКЕТА
     </div>
     <label for="surname">Фамилия*:
-        <input type="text" 
-            id="surname" 
-            v-model.trim="form.surname" 
-            tabindex="1" 
-            class=""/>
+        <input type="text" id="surname" v-model.trim="form.surname" tabindex="1" />
     </label>
     <label for="name">Имя*:
         <input type="text" id="name" tabindex="2" v-model.trim="form.name" />
@@ -52,7 +48,6 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate';
 import "@/styles/mainform.sass";
 import Passport from './Passport.vue';
 import Adress from './Adress.vue';
@@ -70,7 +65,6 @@ export default {
     SendPanel,
     Note
   },
-  mixins: [validationMixin],
   data() {
       return {
         registerClient: false,

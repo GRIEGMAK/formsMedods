@@ -31,7 +31,6 @@
 
 <script>
 import onlyNumbers from '../valid/onlyNumbers';
-import { validationMixin } from 'vuelidate';
 import { maxLength } from 'vuelidate/lib/validators';
 import '@/styles/adress.sass';
 
@@ -47,7 +46,6 @@ export default {
           }
       }
   },
-  mixins: [validationMixin],
   data() {
       return{
           registerClient: false,

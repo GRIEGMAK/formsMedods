@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate';
 import onlyNumbers from '../valid/onlyNumbers';
 import { required, minLength } from 'vuelidate/lib/validators';
 import '@/styles/passport.sass';
@@ -71,7 +70,6 @@ export default {
           ]
       }
   },
-  mixins: [validationMixin],
   validations: {
     form: {
         documents_series: { onlyNumbers, minLength: minLength(4)},
