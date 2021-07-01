@@ -8,31 +8,42 @@
     </div>
     <div id="body_passport">
         <label for="type_document">Тип документа*:
-            <select>
+            <select  v-model="form.type_document" 
+            :class="$v.form.type_document.$invalid && !firstRegistration ? 'invalid_value' : ''">
                 <option v-for="(type_document, index) in types_document" :value="type_document.value" :key="index">
                     {{type_document.value}}
                 </option>
             </select>
         </label>
         <label for="documents_series">Серия:
-            <input type="text" id="documents_series" v-model="form.documents_series" />
+            <input type="text" 
+            id="documents_series" 
+            v-model="form.documents_series" 
+            :class="$v.form.documents_series.$invalid && !firstRegistration ? 'invalid_value' : ''"/>
         </label>
         <label for="documents_number">Номер:
-            <input type="text" id="documents_number" v-model="form.documents_number" />
+            <input type="text" 
+            id="documents_number" 
+            v-model="form.documents_number" 
+            :class="$v.form.documents_number.$invalid && !firstRegistration ? 'invalid_value' : ''"/>
         </label>
         <label for="document_issued">Кем выдан:
             <input type="text" id="document_issued" v-model="form.document_issued" />
         </label>
         <label for="document_date">Дата выдачи*:
-            <input type="date" id="document_date" v-model="form.document_date" required/>
+            <input type="date" id="document_date" 
+            v-model="form.document_date" 
+            :class="$v.form.document_date.$invalid && !firstRegistration ? 'invalid_value' : ''"
+            />
         </label>
     </div>
 </div>
 </template>
 
 <script>
+import { required, minLength } from '@vuelidate/validators'
+import { useVuelidate } from '@vuelidate/core'
 import onlyNumbers from '../valid/onlyNumbers';
-import { required, minLength } from 'vuelidate/lib/validators';
 import '@/styles/passport.sass';
 
 export default {
@@ -47,6 +58,7 @@ export default {
         }
     }
   },
+  props: ['firstRegistration'],
   data() {
       return{
           registerClient: false,
@@ -70,6 +82,7 @@ export default {
           ]
       }
   },
+  setup: () => ({ $v: useVuelidate() }),
   validations: {
     form: {
         documents_series: { onlyNumbers, minLength: minLength(4)},

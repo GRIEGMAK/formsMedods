@@ -8,7 +8,10 @@
     </div>
     <div id="body_adress">
         <label for="index_city">Индекс:
-            <input type="text" id="index_city" v-model.trim="form.index_city"/>
+            <input type="text" 
+            id="index_city" 
+            v-model.trim="form.index_city"
+            :class="$v.form.index_city.$invalid && !firstRegistration ? 'invalid_value' : ''"/>
         </label>
         <label for="country">Страна:
             <input type="text" id="country" v-model.trim="form.country"/>
@@ -31,7 +34,8 @@
 
 <script>
 import onlyNumbers from '../valid/onlyNumbers';
-import { maxLength } from 'vuelidate/lib/validators';
+import { useVuelidate } from '@vuelidate/core';
+import { maxLength } from '@vuelidate/validators';
 import '@/styles/adress.sass';
 
 export default {
@@ -46,6 +50,7 @@ export default {
           }
       }
   },
+  props: ['firstRegistration'],
   data() {
       return{
           registerClient: false,
@@ -59,6 +64,7 @@ export default {
           },
       }
   },
+  setup: () => ({ $v: useVuelidate() }),
   validations: {
     form: {
         index_city: { onlyNumbers, maxLength: maxLength(6) },
