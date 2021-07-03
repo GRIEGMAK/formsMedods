@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: '/new-client/'
+    publicPath: '/formsMedods/'
     }
