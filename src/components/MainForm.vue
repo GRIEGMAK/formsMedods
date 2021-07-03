@@ -62,10 +62,10 @@
     <div id="div_sms">Не отправлять СМС:
         <input type="checkbox" id="sms" v-model="form.sms" />
     </div>
-    <Adress :firstRegistration="firstRegistration"/>
-    <Passport :firstRegistration="firstRegistration"/>
+    <Adress :firstRegistration="firstRegistration" />
+    <Passport :firstRegistration="firstRegistration" />
     <note></note>
-    <send-panel></send-panel>
+    <send-panel :changeFirstRegistration="changeFirstRegistration"></send-panel>
   </div>
 </template>
 
@@ -91,9 +91,7 @@ export default {
   },
   data() {
       return {
-        adressValidate: false,
-        firstRegistration: false,
-        registerClient: false,
+        firstRegistration: true,
         form: {
           surname: '',
           name: '',
@@ -129,14 +127,8 @@ export default {
     },
   },
   methods: {
-    checkForm() {
-      this.$v.form.$touch();
-      if (!this.$v.form.$invalid) {
-        this.registerClient = true;
-      }
-    },
-    checkFormAdress(form) {
-      return form.$invalid
+    changeFirstRegistration(value) {
+      this.firstRegistration = value;
     }
   },
 }

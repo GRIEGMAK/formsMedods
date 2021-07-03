@@ -58,7 +58,7 @@ export default {
         }
     }
   },
-  props: ['firstRegistration'],
+  props: ['firstRegistration', 'checkFormPassport'],
   data() {
       return{
           registerClient: false,

@@ -14,6 +14,7 @@ import '@/styles/sendpanel.sass'
 
 export default {
   name: 'SendPanel',
+  props: ['changeFirstRegistration'],
   methods: {
     cancel_reset() {
       document.querySelectorAll("input").forEach(input=> {
@@ -22,11 +23,18 @@ export default {
       document.querySelectorAll("select").forEach(select=> {
         select.value=""
       })
+      this.changeFirstRegistration(true)
     },
     save_reset() {
-      this.cancel_reset()
-      alert("Клиент создан")
+      if(document.querySelectorAll('.invalid_value').length==0) {
+        this.changeFirstRegistration(false)
+        alert("Дополните данные и попробуйте сохраниться снова")
+      } else {
+        this.cancel_reset()
+        
+        alert("Клиент добавлен в базу")
+      }
     }
-  }
+  },
 }
 </script>

@@ -48,7 +48,7 @@ export default {
           else {
               document.querySelector("#adress").classList.add("passive")
           }
-      }
+      },
   },
   props: ['firstRegistration'],
   data() {
