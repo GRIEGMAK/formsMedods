@@ -61,7 +61,6 @@ export default {
   props: ['firstRegistration', 'checkFormPassport'],
   data() {
       return{
-          registerClient: false,
           form: {
               type_document: '',
               documents_series: '',

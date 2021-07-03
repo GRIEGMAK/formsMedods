@@ -53,7 +53,6 @@ export default {
   props: ['firstRegistration'],
   data() {
       return{
-          registerClient: false,
           form: {
               index_city:'',
               country: '',
